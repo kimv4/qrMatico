@@ -1,0 +1,263 @@
+
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>escaneomatico</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="https://kit.fontawesome.com/2d5d9448ef.js" crossorigin="anonymous"></script>
+  
+  <style type="text/css">
+  video{
+    filter: grayscale();
+  }
+    body{
+        width:100%;
+        text-align:center;
+    }
+    img{
+        border:0;
+    }
+    #camLoad {
+      padding-top: 5px;
+      animation: latido linear 1s infinite;
+    }
+    @keyframes latido {
+      0% { color: transparent; }
+      100% { color: black; }
+    }
+    #main{
+        margin: 15px auto;
+        background:white;
+        overflow: auto;
+      width: 100%;
+    }
+    #header{
+        background:white;
+        margin-bottom:15px;
+    }
+    #mainbody{
+        background: white;
+        width:100%;
+      display:none;
+    }
+    #footer{
+        background:white;
+    }
+    #v{
+        width:480px;
+        height:320px;
+    }
+    #qr-canvas{
+        display:none;
+    }
+    #qrfile{
+        width:480px;
+        height:320px;
+    }
+    #mp1{
+        text-align:center;
+        /* font-size:35px; */
+    }
+    #imghelp{
+        position:relative;
+        left:0px;
+        top:-160px;
+        z-index:100;
+        font:18px arial,sans-serif;
+        background:#f0f0f0;
+        margin-left:35px;
+        margin-right:35px;
+        padding-top:10px;
+        padding-bottom:10px;
+        border-radius:20px;
+    }
+    .selector{
+        margin:0;
+        padding-bottom:5px;
+        text-align: center;
+        cursor:pointer;
+        margin-bottom:-5px;
+    }
+    #outdiv
+    {
+        width:480px;
+        height:320px;
+      /* border: solid; */
+      /* border-width: 3px 3px 3px 3px; */
+    }
+    #result{
+      width:100px;
+      height: 200px;
+    }
+    
+    ul{
+        margin-bottom:0;
+        margin-right:40px;
+    }
+    li{
+        display:inline;
+        padding-right: 0.5em;
+        padding-left: 0.5em;
+        font-weight: bold;
+        /* border-right: 1px solid #333333; */
+    }
+    li a{
+        text-decoration: none;
+        color: black;
+    }
+    
+    #footer a{
+      color: black;
+    }
+    .tsel{
+        padding:0;
+    }
+  
+  </style>
+  
+  <script type="text/javascript" src="/js/llqrcode.js"></script>
+  <script type="text/javascript" src="/js/webqr.js"></script>
+ 
+  
+  </head>
+  
+  <body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4 py-5">
+        <div class="col py-3">
+          <label for="">N° Furgon</label>
+        <select name="sel_buzz" id="sel_buzz" class="form-control form-control-sm rounded-pill">
+          <option value="000">Seleccione Numero de furgon</option>
+          <option value="01">Furgon 01</option>
+          <option value="02">Furgon 02</option>
+          <option value="03">Furgon 03</option>
+          <option value="04">Furgon 04</option>
+          <option value="05">Furgon 05</option>
+          <option value="06">Furgon 06</option>
+          <option value="07">Furgon 07</option>
+          <option value="08">Furgon 08</option>
+          <option value="09">Furgon 09</option>
+          <option value="10">Furgon 10</option>
+          <option value="11">Furgon 11</option>
+          <option value="12">Furgon 12</option>
+          <option value="13">Furgon 13</option>
+          <option value="14">Furgon 14</option>
+          <option value="15">Furgon 15</option>
+          <option value="16">Furgon 16</option>
+          <option value="17">Furgon 17</option>
+          <option value="18">Furgon 18</option>
+        </select>
+        </div>
+        <div class="col py-3">
+          <label for="">Nombre Conductor</label>
+        <select name="sel_name_driver" id="sel_name_driver" class="form-control form-control-sm rounded-pill">
+          <option value="000">Seleccione Nombre Conductor</option>
+          <option value="Nombre 1 apellido">Nombre 1 apellido</option>
+          <option value="Nombre 2 apellido">Nombre 2 apellido</option>
+          <option value="Nombre 3 apellido">Nombre 3 apellido</option>
+          <option value="Nombre 4 apellido">Nombre 4 apellido</option>
+          <option value="Nombre 5 apellido">Nombre 5 apellido</option>
+          <option value="Nombre 6 apellido">Nombre 6 apellido</option>
+        </select>
+        </div>
+        <div class="col py-3">
+            <label for="">Evento</label><br>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary lead py-2 rounded px-3 mx-2">Llegada<br>
+              <input type="radio" name="saliollego" id="saliollego" value="llegada" autocomplete="off" class="form-control form-control-sm my-2" checked>
+            </label>
+            <label class="btn btn-primary lead py-2 rounded px-3 mx-2">Salida <br>
+              <input type="radio" name="saliollego" id="saliollego" value="salida" autocomplete="off" class="form-control form-control-sm my-2">
+            </label>
+          </div>
+          <script>
+            
+          </script>
+        </div>
+        <div class="col py-3">
+          <p id="origendestino">Localidad</p>
+          <select name="sel_tofrom" id="sel_tofrom" class="form-control form-control-sm rounded-pill">
+            <option value="000"></option>
+            <option value="El Monte">El Monte</option>
+            <option value="Talagante">Talagante</option>
+            <option value="Peñaflor">Peñaflor</option>
+            <option value="Melipilla">Melipilla</option>
+            <option value="Melipilla Campo Norte">Melipilla Campo Norte</option>
+            <option value="Melipilla Campo Sur">Melipilla Campo Sur</option>
+            <option value="Pomaire">Pomaire</option>
+            <option value="Paico">Paico</option>
+          </select>
+        </div>
+        <div class="col py-3">
+          <label for="">Rut</label>
+          <input type="text" name="rut_" id="rut_" class="form-control form-control-sm rounded-pill">
+        </div>
+        <div class="col py-5">
+          <button class="btn btn-info w-75 rounded-pill">Agregar Pasajero</button>
+        </div>
+      </div>
+      <div class="col-4">
+        <table class="table table-striped table-dark table-sm rounded">
+          <thead class="thead-inverse">
+            <tr>
+              <th>rut</th>
+              <th>Nombre</th>
+              <th class="text-center">Accion</th>
+            </tr>
+            </thead>
+            <tbody id="insertable">
+             
+            </tbody>
+        </table>
+        <!-- fin tabla colocar btn de ingreso de data -->
+        <button class="btn btn-lg w-100 btn-success rounded-pill" onclick="loadDatato()">Cargar Datos</button>
+      </div>
+
+
+      <div class="col-4">
+        <div id="main">
+          <div id="mainbody">
+          <table class="tsel" border="0" width="100%">
+          <tr>
+          <td valign="top" align="center" width="50%">
+          <table class="tsel" border="0">
+          <tr>
+          <td><p class="selector invisible" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left"><i class="fas fa-video"></i></p></td>
+          <tr><td colspan="2" align="center">
+          <div id="outdiv">
+          </div></td></tr>
+          </table>
+          </td>
+          </tr>
+          <tr><td colspan="3" align="center">
+          </td></tr>
+          <tr><td colspan="3" align="center">
+          <div id="result" class="pt-3"></div>
+          </td></tr>
+          </table>
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-8418802408648518"
+            data-ad-slot="2527990541"
+            data-ad-format="auto"></ins>
+          </div>&nbsp;
+          
+          <div class="container-fluid fixed-bottom bg-dark">
+            <div class="row">
+              <div class="col text-white">
+                <h5 align="center">Copyright &copy; 2020 QrMatico</h5>
+              </div>
+            </div>
+          </div>
+          </div>
+          <canvas id="qr-canvas" width="640" height="480"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  </html>
+  <script type="text/javascript">load();</script>

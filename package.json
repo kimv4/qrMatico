@@ -1,0 +1,19 @@
+{
+  "name": "cedurola",
+  "version": "0.0.1",
+  "description": "lector de codigos de cedulas de identidad",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Marco Urrutia (MarcuXo)",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
