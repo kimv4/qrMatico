@@ -1453,7 +1453,7 @@ router.post('/addata', async (req, res, next) => {
   }
 
   function horactual(){
-    var fecha = moment().utcOffset(true).format('HH:mm:ss');
+    var fecha = moment().format('HH:mm:ss');
     return fecha;
   }
 
