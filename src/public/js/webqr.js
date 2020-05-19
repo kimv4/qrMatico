@@ -321,8 +321,27 @@ function addTable_(datos){
   //inouttxtx.innerHTML="Origen";
   elEvento ? tipoevent = "LLEGADA" : tipoevent = "SALIDA"
   contador++;
-  console.log(elRut);
-  listable.push({ ID: contador, rut: datos[0].rut, nom_corto: datos[0].nom_corto, datadb: datos})
+  var finfindnemo="guardalo";
+  console.log(datos[0].rut);
+  console.log("largo de array"+listable.length);
+  if(listable.length == 0){
+    listable.push({ ID: contador, rut: datos[0].rut, nom_corto: datos[0].nom_corto, datadb: datos});
+  }else{
+    listable.forEach(element => {
+      var datoin = element.rut;
+      if(datos[0].rut == datoin){
+        //console.log("encontrado");
+        finfindnemo = "encontrado";
+      }
+    });
+    console.log("this is "+finfindnemo)
+    if(finfindnemo === "guardalo"){
+      listable.push({ ID: contador, rut: datos[0].rut, nom_corto: datos[0].nom_corto, datadb: datos})
+    }
+  }
+  
+ 
+  
   
   addListable()
   console.log(listable)
@@ -340,7 +359,7 @@ function addTable_(datos){
       <tr>
           <td>${listable[x].rut}</td>
           <td>${listable[x].nom_corto}</td>
-          <td class="text-center text-warning py-2" onclick="erasefromTable('${listable[x].ID}')">${listable[x].ID}<i class="far fa-trash-alt"></i></td>
+          <td class="text-center text-warning py-2" onclick="erasefromTable('${listable[x].ID}')"><i class="far fa-trash-alt"></i></td>
         </tr>
       `
       txt += elemento;
