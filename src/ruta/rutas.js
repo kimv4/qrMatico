@@ -1453,8 +1453,8 @@ router.post('/addata', async (req, res, next) => {
   }
 
   function horactual(){
-    var fecha = moment().format('HH:mm:ss');
-    return fecha;
+    var fecha2 = moment().utcOffset('-0400').format('HH:mm:ss');
+    return fecha2;
   }
 
   console.log("datos ingresados")
