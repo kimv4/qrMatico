@@ -88,7 +88,7 @@ function process_string(_rut){
   const frut = _rut.slice(figual+1, fand);
   if(frut.length <= 11){
     
-   fetch('http://localhost:5550/scan/consulta?rut='+frut, {
+   fetch('https://read-data.herokuapp.com/scan/consulta?rut='+frut, {
      method: 'GET'
    })
    .then(res => res.json())
@@ -370,7 +370,7 @@ function addTable_(datos){
     var tipoevent = "";
     elEvento ? tipoevent = "LLEGADA" : tipoevent = "SALIDA"
     
-    var url_ = "http://localhost:5550/scan/addata",params = {
+    var url_ = "https://read-data.herokuapp.com/scan/addata",params = {
       method: 'GET',
       data: listable
     };   
