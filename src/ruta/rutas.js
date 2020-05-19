@@ -1448,7 +1448,7 @@ router.post('/addata', async (req, res, next) => {
     var dd=fecha.getDay();
     var mm=fecha.getMonth();
     var yyyy=fecha.getFullYear()
-    var hh=fecha.getHours();
+    var hh=fecha.getHours()-4;
     var mi=fecha.getMinutes();
     var txt = dd+"/"+mm+"/"+yyyy+" "+hh+":"+mi;
     return txt;
