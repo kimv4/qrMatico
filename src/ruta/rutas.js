@@ -1401,14 +1401,60 @@ router.get('/consulta', async (req, res, next) => {
 
 router.post('/addata', async (req, res, next) => {
   const listable = req.body.ruts;
-  var data = listable
+  const furgon = req.body.furgon;
+  const chofer = req.body.nomDriver;
+  const evento = req.body.evento;
+  const localidad = req.body.localidad;
+
+  var data = listable;
   var datos = [];
+  console.log("==>"+furgon+"==>"+chofer+"==>"+evento+"==>"+localidad)
   listable.forEach(element => {
-    console.log(element);
-    
+    var datadb = element.datadb;
+    datadb.forEach(data => {
+      datos.push({
+        furgon: furgon,
+        chofer: chofer,
+        evento: evento,
+        localidad: localidad,
+        rut: data.rut,
+        nom_completo: data.nom_comp,
+        nacionalidad: data.nac,
+        ceco: data.ceco,
+        nom_ceco: data.nom_ceco
+      })
+    });
   });
   
-  
+  for (let t = 0; t < datos.length; t++) {
+    const dtfg = datos[t];
+    var insertacion = await modAdd({
+      rut: dtfg.rut,
+      nom_completo: dtfg.nom_completo,
+      nacionalidad: dtfg.nacionalidad,
+      ceco: dtfg.ceco,
+      nom_ceco: dtfg.nom_ceco,
+      furgon: dtfg.furgon,
+      chofer: dtfg.chofer,
+      evento: dtfg.evento,
+      localidad: dtfg.localidad,
+      fecha: fechaactual() 
+    });
+    var savedota = await insertacion.save();
+  }
+
+  function fechaactual(){
+    var fecha = new Date();
+    var dd=fecha.getDay();
+    var mm=fecha.getMonth();
+    var yyyy=fecha.getFullYear()
+    var hh=fecha.getHours();
+    var mi=fecha.getMinutes();
+    var txt = dd+"/"+mm+"/"+yyyy+" "+hh+":"+mi;
+    return txt;
+  }
+
+  console.log("datos ingresados")
     
   res.json("ok")
   
