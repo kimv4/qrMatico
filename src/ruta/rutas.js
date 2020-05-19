@@ -1447,12 +1447,13 @@ router.post('/addata', async (req, res, next) => {
   }
 
   function fechaactual(){
-    var fecha = moment().utcOffset('-0800').format('YYYY-MM-DD HH:mm:ss');
+    //var fecha = moment().utcOffset('-0000').format('YYYY-MM-DD HH:mm:ss');
+    var fecha = moment().format('YYYY-MM-DD HH:mm:ss');
     return fecha;
   }
 
   function horactual(){
-    var fecha = moment().format('HH:mm:ss');
+    var fecha = moment().utcOffset(true).format('HH:mm:ss');
     return fecha;
   }
 
