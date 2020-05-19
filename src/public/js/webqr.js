@@ -83,9 +83,16 @@ function initCanvas(w,h)
 //FUNCIO QUE PROCESA EL RESULTADO DE LA LECTURA QR Y EXTRAE EL RUT
 function process_string(_rut){
   const rut = document.getElementById('rut_');
-  const figual = _rut.search("=");
-  const fand = _rut.search("&");
-  const frut = _rut.slice(figual+1, fand);
+  //console.log(_rut)
+  var frut;
+  if(_rut.length >=12){
+    const figual = _rut.search("=");
+    const fand = _rut.search("&");
+    frut = _rut.slice(figual+1, fand);
+  } else {
+    frut = _rut;
+  }
+
   if(frut.length <= 11){
     
    fetch('https://read-data.herokuapp.com/scan/consulta?rut='+frut, {
@@ -393,3 +400,10 @@ function addTable_(datos){
     });
 
   };
+
+  function loadmanualusr(){
+    const rutmanl = document.getElementById('rut_').value
+    console.log(rutmanl);
+    process_string(rutmanl)
+    
+  }
