@@ -3,6 +3,8 @@ const router = exprtes.Router();
 const con = require('../dataBase/DbConn');
 const modAr = require('../dataBase/modelo/DotacionAriztia');
 const modAdd = require('../dataBase/modelo/UsrFurgones');
+const moment = require('moment');
+moment().utc().format()
 
 router.get('/', (req, res, next) => {
   
@@ -1438,26 +1440,31 @@ router.post('/addata', async (req, res, next) => {
       chofer: dtfg.chofer,
       evento: dtfg.evento,
       localidad: dtfg.localidad,
-      fecha: fechaactual() 
+      fecha: fechaactual(),
+      hora: horactual()
     });
     var savedota = await insertacion.save();
   }
 
   function fechaactual(){
-    var fecha = new Date();
-    var dd=fecha.getDay();
-    var mm=fecha.getMonth();
-    var yyyy=fecha.getFullYear()
-    var hh=fecha.getHours()-4;
-    var mi=fecha.getMinutes();
-    var txt = dd+"/"+mm+"/"+yyyy+" "+hh+":"+mi;
-    return txt;
+    var fecha = moment().utcOffset('-0800').format('YYYY-MM-DD HH:mm:ss');
+    return fecha;
+  }
+
+  function horactual(){
+    var fecha = moment().format('HH:mm:ss');
+    return fecha;
   }
 
   console.log("datos ingresados")
     
   res.json("ok")
   
+});
+
+router.get('/getdata', async (req, res, next) => {
+const query = await modAdd.find();
+res.json(query)
 });
 
 

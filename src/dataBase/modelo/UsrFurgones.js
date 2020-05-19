@@ -11,7 +11,8 @@ const usrFurgonSchema = new Schema({
   "chofer": {type: String},
   "evento": {type: String},
   "localidad": {type: String},
-  "fecha": {type: String},
+  "fecha": {type: Date},
+  "hora": {type: String},
 });
 
 

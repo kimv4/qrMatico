@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mantenedor Data</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.mini.min.js"></script>
+</head>
+<style>
+  body{
+    background-image: url('../img/ariztia2.jpg');
+  }
+</style>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-success w-100 btn-sm mt-2"  onclick="doit('xlsx');">EXPORTAR DATOS A EXCEL <i class="far fa-file-excel"></i></button>
+        <table class="table table-striped table-sm" id="tableReport">
+          <thead class="thead-inverse">
+            <tr>
+              <th>N°</th>
+              <th>RUT</th>
+              <th>NOMBRE</th>
+              <th>NACIONALIDAD</th>
+              <th>CECO</th>
+              <th>NOMBRE CECO</th>
+              <th>FURGON</th>
+              <th>CHOFER</th>
+              <th>EVENTO</th>
+              <th>LOCALIDAD</th>
+              <th>FECHA</th>
+              <th>HORA</th>
+            </tr>
+            </thead>
+            <tbody id="addData">
+              
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+</body>
+<script>
+  var datable = document.getElementById('addData')
+  fetch('https://read-data.herokuapp.com/scan/getdata', { method: 'GET'})//remote
+  //fetch('http://localhost:5550/scan/getdata', { method: 'GET'})//local
+   .then(res => res.json())
+   .then(function(respons){
+    console.log(respons)
+    cont = 0;
+    respons.forEach(ele => {
+      datable.innerHTML += `
+      <tr>
+        <td>${cont++}</td>
+        <td>${ele.rut}</td>
+        <td>${ele.nom_completo}</td>
+        <td>${ele.nacionalidad}</td>
+        <td>${ele.ceco}</td>
+        <td>${ele.nom_ceco}</td>
+        <td>${ele.furgon}</td>
+        <td>${ele.chofer}</td>
+        <td>${ele.evento}</td>
+        <td>${ele.localidad}</td>
+        <td>${ele.fecha}</td>
+        <td>${ele.hora}</td>
+      </tr>
+      `
+    });
+   });
+
+  function doit(type, fn, dl) {
+    var elt = document.getElementById('tableReport');
+    var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+    return dl ?
+      XLSX.write(wb, {bookType:type, bookSST:true, type: 'text'}) :
+      XLSX.writeFile(wb, fn || ('usuariosFurgonAriztia.' + (type || 'xlsx')));
+  }
+</script>
+</html>

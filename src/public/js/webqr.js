@@ -95,7 +95,8 @@ function process_string(_rut){
 
   if(frut.length <= 11){
     
-   fetch('https://read-data.herokuapp.com/scan/consulta?rut='+frut, {
+    fetch('https://read-data.herokuapp.com/scan/consulta?rut='+frut, {//REMOTE
+    //fetch('http://localhost:5550/scan/consulta?rut='+frut, {//LOCAL
      method: 'GET'
    })
    .then(res => res.json())
@@ -396,7 +397,8 @@ function addTable_(datos){
     var tipoevent = "";
     elEvento ? tipoevent = "LLEGADA" : tipoevent = "SALIDA"
     
-    var url_ = "https://read-data.herokuapp.com/scan/addata",params = {
+    var url_ = "https://read-data.herokuapp.com/scan/addata",params = {//REMOTO
+    //var url_ = "http://localhost:5550/scan/addata",params = {//LOCAL
       method: 'GET',
       data: listable
     };   
