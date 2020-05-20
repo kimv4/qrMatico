@@ -4,14 +4,17 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CONTROL PASAJEROS ARIZTIA</title>
+  <link rel="icon" type="image/png" href="../img/773869.png">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <script src="https://kit.fontawesome.com/2d5d9448ef.js" crossorigin="anonymous"></script>
 
 
   <style type="text/css">
   body{
-      background-image: url('../img/ariztia2.jpg');
-      height: 100vh;
+    background-image: url('../img/ariztia2.jpg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
     }
   video{
     filter: grayscale();
@@ -137,7 +140,7 @@
           <option value="000">Seleccione Numero de furgon</option>
           <option value="DJ LL - 26">DJ LL - 26</option>
           <option value="CL AS - 22">CL AS - 22</option>
-          <option value="CXDB - 16">CX DB - 16</option>
+          <option value="CX DB - 16">CX DB - 16</option>
           <option value="DJ LL - 25">DJ LL - 25</option>
           <option value="FY BF - 43">FY BF - 43</option>
           <option value="HL BD - 59">HL BD - 59</option>
@@ -227,12 +230,9 @@
             <option value="Pomaire">Melipilla Costa</option>
           </select>
         </div>
-        <div class="col py-3">
-          <label class="lead text-white"><b>Rut</b></label>
-          <input type="text" name="rut_" id="rut_" class="form-control rounded-pill" placeholder="RUT MANUAL EJ: 01152152-1">
-        </div>
-        <div class="col py-5">
-          <button class="btn btn-info w-75 rounded-pill p-2" onclick="loadmanualusr()"><b>Agregar Pasajero</b></button>
+        <div class="col pt-5">
+          <img src="../img/logomant.png" alt="" height="130px">
+          <img src="../img/logo.svg" alt="" height="130px">
         </div>
       </div>
       <div class="col-4 pt-4">
@@ -290,8 +290,16 @@
           </div>
           </div>
           <canvas id="qr-canvas" width="640" height="480"></canvas>
-          <img src="../img/logomant.png" alt="" height="160px">
-          <img src="../img/logoart.png" alt="" height="160px">
+          <div class="col">
+            <div class="col py-3">
+              <label class="lead text-white"><b>Rut</b></label>
+              <input type="text" name="rut_" id="rut_" class="form-control rounded-pill" placeholder="RUT MANUAL EJ: 01152152-1">
+            </div>
+            <div class="col py-5">
+              <button class="btn btn-info w-75 rounded-pill p-2" onclick="loadmanualusr()"><b>Agregar Pasajero</b></button>
+            </div>
+          </div>
+         
       </div>
     </div>
   </div>
